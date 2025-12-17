@@ -38,6 +38,7 @@
       transition: background 0.3s, color 0.3s;
     }
 
+    /* Loader */
     #loader {
       position: fixed;
       inset: 0;
@@ -61,6 +62,7 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Sticky Navbar */
     nav {
       position: sticky;
       top: 0;
@@ -92,6 +94,7 @@
       margin-left: 8px;
     }
 
+    /* Scroll Animation */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -170,6 +173,7 @@
   <div class="nav-actions">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
+    <a href="https://www.linkedin.com/in/vaibhav-kachhwaha-933915174/" target="_blank">LinkedIn</a>
     <button onclick="toggleDark()">🌙</button>
     <a href="Resume.pdf" download>📄</a>
   </div>
@@ -179,6 +183,9 @@
   <h1>Vaibhav Kachhwaha</h1>
   <p>B.Tech CSE (Artificial Intelligence) | Aspiring Software Engineer</p>
   <p>📍 Raigarh, Chhattisgarh | 📞 9340559550</p>
+  <p>
+    🔗 <a href="https://www.linkedin.com/in/vaibhav-kachhwaha-933915174/" target="_blank" style="color:#e0e7ff; text-decoration:underline;">LinkedIn Profile</a>
+  </p>
 </header>
 
 <section id="about" class="reveal">
@@ -210,14 +217,17 @@
 <footer>© 2025 Vaibhav Kachhwaha · All Rights Reserved</footer>
 
 <script>
+  // Loader
   window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     if (loader) loader.style.display = 'none';
   });
 
+  // Dark mode with localStorage
   function toggleDark() {
     document.body.classList.toggle('dark');
-    localStorage.setItem('theme',
+    localStorage.setItem(
+      'theme',
       document.body.classList.contains('dark') ? 'dark' : 'light'
     );
   }
@@ -226,14 +236,18 @@
     document.body.classList.add('dark');
   }
 
+  // Scroll reveal (FIXED: removed stray closure)
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.2 });
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
   reveals.forEach(el => observer.observe(el));
 </script>
